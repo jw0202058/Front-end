@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    
+    body{
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .snowy{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        width: 500px;
+        color:rgb(255, 255, 255);
+        left: 50%;
+        top: 50%;      /* 중앙으로 맞추기, flex, center 쓰지 않고*/
+        position: absolute;
+        transform: translate( -50%, -50%);
+        margin: 0;
+
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-shadow: 0px 0px 10px aliceblue, 0px 0px 10px aliceblue, 0px 0px 10px aliceblue, 0px 0px 10px white;        /* 그림자를 겹쳐서 더 진하게 만들 수도 있다 */
+    }
+
+</style>
+
+<body>
+    <canvas id='canv'></canvas>
+    <div class="snowy">
+        <!-- <p>a</p>
+        <p> </p> -->
+        <p>s</p>
+        <p>n</p>
+        <p>o</p>
+        <p>w</p>
+        <p>y</p>
+        <p> </p>
+        <p>d</p>
+        <p>a</p>
+        <p>y</p>
+    </div>
+    <!-- <div class="text"> -->
+    <h1>WINTER</h1>
+    <!-- </div> -->
+
+
+    <script>
+        var c = document.getElementById('canv'),        // 제이쿼리 이용해서 눈이 내리는 캔버스를 받아올 것
+            $ = c.getContext("2d");
+        var w = c.width = window.innerWidth, 
+            h = c.height = window.innerHeight;
+        
+        Snowy();
+        function Snowy() {
+          var snow, arr = [];
+          var num = 300, tsc = 0, sp = 0.3;  //num:눈송이 개수 , tsc:눈송이 가로 변화율, sp:내리는 속도
+          var sc = 0.8, t = 10, mv = 20, min = 0.5;  //sc:눈송이 크기
+
+            for (var i = 0; i < num; ++i) {
+              snow = new Flake();
+              snow.y = Math.random() * (h + 50);
+              snow.x = Math.random() * w;
+              snow.t = Math.random() * (Math.PI * 2);
+              snow.sz = (100 / (10 + (Math.random() * 100))) * sc;
+              snow.sp = (Math.pow(snow.sz * .8, 2) * .15) * sp;
+              snow.sp = snow.sp < min ? min : snow.sp;
+              arr.push(snow);
+            }
+
+          go();
+
+          function go(){
+            window.requestAnimationFrame(go);
+            $.clearRect(0, 0, w, h);            // 이건 굳이 없어도 될 듯?
+            //   $.fillStyle = 'hsla(242, 95%, 100%, 1)';
+            $.fillStyle = 'rgba(0, 0, 0, 1)'      // hsla 안 쓰고 rgba 써도 되는구나
+            $.fillRect(0, 0, w, h);
+            $.fill();
+                for (var i = 0; i < arr.length; ++i) {
+                  f = arr[i];
+                  f.t += .05;
+                  f.t = f.t >= Math.PI * 2 ? 0 : f.t;
+                  f.y += f.sp;
+                  f.x += Math.sin(f.t * tsc) * (f.sz * .3);
+                  if (f.y > h + 50) f.y = -10 - Math.random() * mv;
+                  if (f.x > w + mv) f.x = - mv;
+                  if (f.x < - mv) f.x = w + mv;
+                  f.draw();}
+         }
+
+         function Flake() {     // 눈송이 모양 결정
+            this.draw = function() {
+            this.g = $.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.sz+8);
+            this.g.addColorStop("0.7", "rgb(255, 0, 89)");
+            this.g.addColorStop("0.4","aliceblue");
+            this.g.addColorStop(0, "gray");
+              $.moveTo(this.x, this.y);
+              $.fillStyle = this.g;
+              $.beginPath();
+              $.arc(this.x, this.y, this.sz, 0, Math.PI * 2, true);
+              $.fill();}
+          }
+
+        }
+
+        /*________________________________________*/
+        window.addEventListener('resize', function(){
+          c.width = w = window.innerWidth;
+          c.height = h = window.innerHeight;
+        }, false);
+        
+        </script>
+        </body>
+        </html>

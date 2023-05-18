@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework</title>
+</head>
+
+<style>
+
+    div{
+        display:flex;        
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        font-family:'Malgun Gothic';
+
+        width: 500px;
+        margin:auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        box-shadow: 2px 3px 5px 2px rgb(173, 179, 182);
+        background: linear-gradient(45deg, rgb(230, 88, 230), rgb(255, 123, 0));
+
+        font-family: monospace;
+        color:white;
+    }
+
+    .updown{
+        text-align:center;
+    }
+
+    input{
+        border: 1px solid rgb(153, 105, 124);
+    }
+
+    button{
+        background-color: rgb(0, 0, 0);
+        border: 1px solid rgb(153, 105, 124);
+        color:white;
+    }
+
+     form{
+        margin:10px;
+        margin-bottom: 10px;
+     }
+
+     .won{
+        margin-bottom: 30px;
+     }
+
+     h1{
+        margin-top: 30px;
+     }
+
+    h2{
+        margin: 0;
+    }
+
+
+</style>
+
+<body>
+    <div class="change">
+    <h1>[환율 계산기]</h1>
+
+    <h2>원화를 입력하세요: </h2>
+
+    <form class="won">
+        <input type = "number" id="won">
+        <button type="button" onclick = "change()">환전</button>
+        <p></p>
+        <input type="number" id="dollar" value="dollar">
+    </form>
+    </div>
+
+    <div class="updown">
+        <h1>[업다운 게임(1~100)]</h1>
+        <h2>정답을 맞혀 보세요!</h2>
+        <form>
+            <input type="number" id="num">
+            <button type="button" onclick="updown()">제출</button>
+            <p>총 시도 횟수: <span id="count"></span></p>
+            <span id='res'></span>
+        </form>
+    </div>
+    
+    <script>
+
+        var count=0;
+        var ret = 88;
+
+        function change(){
+            var KRW = document.getElementById('won').value;
+            var USD = KRW / 1300;
+            document.getElementById('dollar').value = USD;
+        }
+        document.getElementById('count').innerHTML=count;
+
+
+
+        
+        function updown(){ 
+            var input = document.getElementById('num').value;
+            if(input>ret){
+                document.getElementById('res').innerHTML="down!";
+            }
+            else if(input<ret){
+                document.getElementById('res').innerHTML="up!";
+            }
+            else{
+                document.getElementById('res').innerHTML="correct!"
+            }
+            count++;
+            document.getElementById('count').innerHTML=count;
+        }
+
+        </script>
+        </body>
+
+</html>
