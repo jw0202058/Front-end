@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .movingBox {
+
+        width: auto;
+
+        background-color: rgb(234, 0, 255);
+
+        position: absolute;
+
+        padding: 10px;
+
+        animation-duration: 1s;
+
+        animation-name: slide;
+
+        animation-iteration-count: infinite;
+
+        animation-direction: alternate;
+
+        animation-timing-function: ease-out;
+
+    }
+
+@keyframes slide { from { top: 0px; }
+
+to { background-color: rgb(255, 0, 0); color: white; font-size: 56px; top: 100px; } }
+
+</style>
+
+<body>
+
+
+    <div class="movingBox">배고파</div>
+
+</body>
+
+
+</html>

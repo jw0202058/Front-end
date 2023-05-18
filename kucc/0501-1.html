@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div">아래 텍스트를 동적으로 추가했습니다.</div>
+    <button>삭제</button>
+    <button type="button" onclick="rem()">삭제</button>
+
+</body>
+
+
+<script>
+
+    // console.log(Math.random());
+
+    // let date = new Date();
+    // console.log(date);
+    // console.log(date.getFullYear());
+    // console.log(date.getDay());
+    // console.log(date.getDate());
+    // console.log(date.getTime());
+    
+    // setInterval(()=>console.log(new Date()), 1000);
+    // setInterval(()=>console.log(Math.floor(Math.random()*10)),2000);
+
+    // setTimeout(()=>console.log("2초 뒤에 실행됨"), 2000);
+
+
+    const ex = document.querySelector("#div");
+    let newDiv = document.createElement("h1");
+    
+    function addElement(){
+       
+        newDiv.innerHTML="개졸림!!";
+        newDiv.style.backgroundColor="red";
+        newDiv.style.color="white";
+       ex.appendChild(newDiv);     // 부모가 앞에, 괄호 안에 들어오는 것이 자식
+
+    }
+
+    addElement();
+
+    function rem(){
+            ex.removeChild(newDiv);
+        }
+    
+    document.querySelector('button').addEventListener('click', rem);
+
+</script>
+</html>

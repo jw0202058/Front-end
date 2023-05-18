@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    div{
+        background-color: rgb(253, 227, 231);
+    }
+
+    h1{
+        color: rgb(241, 140, 157);
+    }
+
+    .red{
+        color: red;
+    }
+</style>
+
+<body>
+
+    <div>
+        <h1>할 거 많다</h1>
+        <ul>
+            <li class = "OS">운영체제</li>
+            <li class = "net">컴네</li>
+            <li class = "3D">쓰리디</li>
+        </ul>
+    </div>
+
+    <button>과제를 다 했다면?</button>
+
+    <p onclick="alert('자퇴해')">과제 하기 싫니?</p>
+
+    <script>
+        var title = document.querySelector("h1");
+        title.textContent = "과제 좀 쉽게 내세요";
+    
+        var circuit = document.querySelector(".net");
+        circuit.textContent = "무선회로설계";
+
+        circuit.classList.add("red");
+
+        // document.querySelector('button').addEventListener('click', function(){alert('과제 끝!')});
+        document.querySelector('button').addEventListener('click', sayAlert);
+        
+        function sayAlert(){
+            alert("다음 과제!");
+        }
+    </script>
+    
+</body>
+
+</html>
